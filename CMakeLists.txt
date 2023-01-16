@@ -32,4 +32,4 @@ include(CPack)
 
 enable_testing()
 
-add_test(test_version test_version WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/test")
+add_test(test_version test_version WORKING_DIRECTORY "${BIN_DIR}")
