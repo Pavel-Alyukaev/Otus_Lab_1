@@ -12,6 +12,7 @@ set(SOURCE
 find_package(Boost REQUIRED COMPONENTS unit_test_framework)
 
 add_executable(${PROJECT_NAME} ${SOURCE})
+set_target_properties( ${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${BIN_DIR} )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
 #
