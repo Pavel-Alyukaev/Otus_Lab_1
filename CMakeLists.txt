@@ -30,6 +30,6 @@ set(CPACK_PACKAGE_CONTACT example@example.com)
 
 include(CPack)
 
-#enable_testing()
+enable_testing()
 
-#add_test(test_version test_version WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/test")
+add_test(test_version test_version WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/test")
