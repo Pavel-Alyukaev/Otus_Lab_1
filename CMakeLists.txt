@@ -16,7 +16,7 @@ SET(BIN_DIR "${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE}")
 
 add_subdirectory("Main")
 add_subdirectory("lib")
-#add_subdirectory("test")
+add_subdirectory("test")
 
 install(TARGETS HelloWord RUNTIME DESTINATION ${BIN_DIR})
 
