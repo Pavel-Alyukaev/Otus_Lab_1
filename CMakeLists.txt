@@ -18,7 +18,7 @@ add_subdirectory("Main")
 add_subdirectory("lib")
 #add_subdirectory("test")
 
-install(TARGETS HelloWord)
+install(TARGETS HelloWord RUNTIME DESTINATION ${BIN_DIR})
 
 set(CPACK_GENERATOR DEB)
 
