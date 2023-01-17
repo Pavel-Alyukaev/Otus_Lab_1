@@ -30,6 +30,6 @@ set(CPACK_PACKAGE_CONTACT example@example.com)
 
 include(CPack)
 
-#enable_testing()
+enable_testing()
 
 add_test(test_version ${BIN_DIR}/test_version)
