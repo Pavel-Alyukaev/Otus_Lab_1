@@ -32,4 +32,4 @@ include(CPack)
 
 enable_testing()
 
-add_test(test_version test_version WORKING_DIRECTORY "${BIN_DIR}")
+add_test(test_version ${BIN_DIR}/test_version)
