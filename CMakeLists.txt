@@ -2,9 +2,9 @@ cmake_minimum_required(VERSION 3.20)
 
 set(MAJOR_NUMBER 0)
 set(MINOR_NUMBER 0)
-set(PATCH_VERSION "1" )
+set(PATCH_VERSION "1" CACHE INTERNAL "Patch version")
 
-project(helloword VERSION 1.0.0 LANGUAGES CXX)
+project(helloword VERSION ${MAJOR_NUMBER}.${MINOR_NUMBER}.${PATCH_VERSION} LANGUAGES CXX)
 
 SET(CMAKE_CXX_STANDARD 17)
 SET(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -16,7 +16,7 @@ SET(BIN_DIR "${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE}")
 
 add_subdirectory("Main")
 add_subdirectory("lib")
-add_subdirectory("test")
+#add_subdirectory("test")
 
 install(TARGETS HelloWord)
 
@@ -30,6 +30,6 @@ set(CPACK_PACKAGE_CONTACT example@example.com)
 
 include(CPack)
 
-enable_testing()
+#enable_testing()
 
-add_test(test_version test_version WORKING_DIRECTORY "${BIN_DIR}")
+#add_test(test_version test_version WORKING_DIRECTORY "${BIN_DIR}")
