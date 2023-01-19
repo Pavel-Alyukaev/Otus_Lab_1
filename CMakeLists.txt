@@ -18,7 +18,7 @@ add_subdirectory("Main")
 add_subdirectory("lib")
 add_subdirectory("test")
 
-install(TARGETS ${CMAKE_SOURCE_DIR}/bin/Release/HelloWord RUNTIME DESTINATION ${BIN_DIR})
+install(TARGETS HelloWord RUNTIME DESTINATION ${BIN_DIR} DIRECTORY ${BIN_DIR})
 
 set(CPACK_GENERATOR DEB)
 
