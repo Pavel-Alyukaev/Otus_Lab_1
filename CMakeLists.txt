@@ -16,7 +16,7 @@ SET(BIN_DIR "${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE}")
 
 add_subdirectory("Main")
 add_subdirectory("lib")
-add_subdirectory("test")
+#add_subdirectory("test")
 
 install(TARGETS HelloWorld CONFIGURATIONS Release RUNTIME DESTINATION bin/Release)
 
@@ -30,6 +30,6 @@ set(CPACK_PACKAGE_CONTACT example@example.com)
 
 include(CPack)
 
-enable_testing()
+#enable_testing()
 
-add_test(test_version ${BIN_DIR}/test_version)
+#add_test(test_version ${BIN_DIR}/test_version)

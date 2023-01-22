@@ -15,15 +15,21 @@ SET(CMAKE_CXX_STANDARD_REQUIRED ON)
 configure_file(include/version.h.in ${CMAKE_SOURCE_DIR}/lib/include/version.h)
 
 set(SOURCE
+        stdafx.h
+
         include/version.h
         include/lib.h
+        include/stringTools.h
 
         src/lib.cpp
-        )
+        src/stringTools.cpp
+        include/stringTools.h src/ipV4.cpp include/ipV4.h src/IpPool.cpp include/IpPool.h)
 
 add_library(${PROJECT_NAME} STATIC ${SOURCE})
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/lib/include)
+target_precompile_headers(${PROJECT_NAME} PRIVATE stdafx.h)
+
 
 if (MSVC)
     target_compile_options(${PROJECT_NAME} PRIVATE
