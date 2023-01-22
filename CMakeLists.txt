@@ -4,7 +4,7 @@ set(MAJOR_NUMBER 0)
 set(MINOR_NUMBER 0)
 set(PATCH_VERSION "1" CACHE INTERNAL "Patch version")
 
-project(helloworld VERSION ${MAJOR_NUMBER}.${MINOR_NUMBER}.${PATCH_VERSION} LANGUAGES CXX)
+project(SortIp VERSION ${MAJOR_NUMBER}.${MINOR_NUMBER}.${PATCH_VERSION} LANGUAGES CXX)
 
 SET(CMAKE_CXX_STANDARD 17)
 SET(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -18,7 +18,7 @@ add_subdirectory("Main")
 add_subdirectory("lib")
 #add_subdirectory("test")
 
-install(TARGETS HelloWorld CONFIGURATIONS Release RUNTIME DESTINATION bin/Release)
+install(TARGETS SortIp CONFIGURATIONS Release RUNTIME DESTINATION bin/Release)
 
 set(CPACK_GENERATOR DEB)
 
