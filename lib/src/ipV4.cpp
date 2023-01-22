@@ -66,14 +66,4 @@ std::string ipV4::ToString() const {
 }
 
 
-const bool operator<(const ipV4& lIp, const ipV4& rIp) {
-    return lIp() < rIp();
-}
 
-const bool operator==(const ipV4 &lIp, const ipV4 &rIp) {
-    return lIp() == rIp();
-}
-
-const bool operator>(const ipV4 &lIp, const ipV4 &rIp) {
-    return lIp() > rIp();
-}

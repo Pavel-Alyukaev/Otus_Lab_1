@@ -24,5 +24,17 @@ private:
      bool m_isValid;
 };
 
+inline const bool operator<(const ipV4& lIp, const ipV4& rIp) {
+    return lIp() < rIp();
+}
+
+inline const bool operator==(const ipV4 &lIp, const ipV4 &rIp) {
+    return lIp() == rIp();
+}
+
+inline const bool operator>(const ipV4 &lIp, const ipV4 &rIp) {
+    return lIp() > rIp();
+}
+
 
 #endif //HELLOWORLD_IPV4_H
