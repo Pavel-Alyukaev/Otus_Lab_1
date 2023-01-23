@@ -30,8 +30,8 @@ std::vector<std::string> IpPool::GetFilterIp(std::vector<uint8_t> mask, IpPool::
         auto ds = a.Contains(mask);
         bool result = false;
 
-        if(flag==IpPool::SortFlag::exactMatch && ds == 0 ||
-                flag==IpPool::SortFlag::noExactMatch && ds > -1)
+        if((flag==IpPool::SortFlag::exactMatch && ds == 0) ||
+                (flag==IpPool::SortFlag::noExactMatch && ds > -1))
             result = true;
 
         return result;
