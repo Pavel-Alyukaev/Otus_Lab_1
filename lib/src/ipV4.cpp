@@ -64,15 +64,15 @@ std::string ipV4::ToString() const {
 
     return result;
 }
-const bool operator<(const ipV4& lIp, const ipV4& rIp) {
+bool operator<(const ipV4& lIp, const ipV4& rIp) {
     return lIp() < rIp();
 }
 
-const bool operator==(const ipV4 &lIp, const ipV4 &rIp) {
+bool operator==(const ipV4 &lIp, const ipV4 &rIp) {
     return lIp() == rIp();
 }
 
- const bool operator>(const ipV4 &lIp, const ipV4 &rIp) {
+ bool operator>(const ipV4 &lIp, const ipV4 &rIp) {
     return lIp() > rIp();
 }
 
