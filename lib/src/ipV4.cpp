@@ -25,7 +25,7 @@ ipV4::ipV4(std::string_view ip):
 unsigned long long ipV4::operator()() const  {
 
     unsigned long long result = 0;
-    unsigned long long coef = 1e9;
+    unsigned long long coef = static_cast<unsigned long long>(1e9);
 
     for(const auto& item :m_ip)
     {
@@ -64,15 +64,15 @@ std::string ipV4::ToString() const {
 
     return result;
 }
-const bool ipV4::operator<(const ipV4& lIp, const ipV4& rIp) {
+const bool operator<(const ipV4& lIp, const ipV4& rIp) {
     return lIp() < rIp();
 }
 
-const bool ipV4::operator==(const ipV4 &lIp, const ipV4 &rIp) {
+const bool operator==(const ipV4 &lIp, const ipV4 &rIp) {
     return lIp() == rIp();
 }
 
- const bool ipV4::operator>(const ipV4 &lIp, const ipV4 &rIp) {
+ const bool operator>(const ipV4 &lIp, const ipV4 &rIp) {
     return lIp() > rIp();
 }
 

@@ -16,9 +16,9 @@ public:
 
     std::string ToString() const;
 
-    const bool operator<(const ipV4& lIp, const ipV4& rIp);
-    const bool operator==(const ipV4& lIp, const ipV4& rIp);
-    const bool operator>(const ipV4& lIp, const ipV4& rIp);
+    friend const bool operator<(const ipV4& lIp, const ipV4& rIp);
+    friend const bool operator==(const ipV4& lIp, const ipV4& rIp);
+    friend const bool operator>(const ipV4& lIp, const ipV4& rIp);
 private:
     std::vector<uint8_t> m_ip;
      bool m_isValid;
