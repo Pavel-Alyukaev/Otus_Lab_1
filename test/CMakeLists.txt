@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 project(test_version VERSION ${MAJOR_NUMBER}.${MINOR_NUMBER}.${PATCH_VERSION} DESCRIPTION "Test" LANGUAGES CXX)
-message(STATUS "${CMAKE_SOURCE_DIR}/lib/include")
+
 SET(CMAKE_CXX_STANDARD 17)
 SET(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -10,7 +10,7 @@ set(SOURCE
         )
 
 add_executable(${PROJECT_NAME} ${SOURCE})
-set_target_properties( ${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${BIN_DIR} )
+set_target_properties( ${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR} )
 
 target_include_directories(${PROJECT_NAME}
         PRIVATE ${CMAKE_SOURCE_DIR}/lib/include

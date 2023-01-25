@@ -1,6 +1,8 @@
 #include "lib.h"
 #include "ipV4.h"
+#include "IpPool.h"
 #include "gtest/gtest.h"
+#include <fstream>
 
 
 TEST(ipV4, ToString)
@@ -39,3 +41,21 @@ TEST(ipV4, Contains)
     ASSERT_EQ(ip1.Contains(mask3), 1);
 
 }
+
+TEST(IpPool, GetSortIp)
+{
+
+    IpPool pool(std::move(std::ifstream("ip_filter.tsv")));
+    std::vector<std::string> data1 = {
+            "1.231.69.33",
+            "1.87.203.225",
+            "1.70.44.170",
+            "1.29.168.152",
+            "1.1.234.8"};
+
+
+    auto result = pool.GetFilterIp({1},IpPool::SortFlag::exactMatch);
+
+    ASSERT_EQ(result, data1);
+}
+

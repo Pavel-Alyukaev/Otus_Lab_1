@@ -41,7 +41,7 @@ std::vector<std::string> IpPool::GetFilterIp(std::vector<uint8_t> mask, IpPool::
     std::copy_if(m_pool.begin(), m_pool.end(),std::back_inserter(res),pred);
 
     std::sort(res.begin(), res.end(), [](const ipV4& a, const ipV4& b){
-        return a<b;
+        return a > b;
     });
     std::vector<std::string> result;
     for (const auto & item: res) {
