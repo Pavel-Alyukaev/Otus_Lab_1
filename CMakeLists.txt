@@ -14,9 +14,15 @@ cmake_print_variables(CMAKE_BUILD_TYPE)
 
 SET(BIN_DIR "${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE}")
 
+add_subdirectory("${CMAKE_SOURCE_DIR}/googletest"
+        "googletest")
 add_subdirectory("Main")
 add_subdirectory("lib")
-#add_subdirectory("test")
+add_subdirectory("test")
+
+if (MSVC)
+    set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+endif()
 
 install(TARGETS SortIp CONFIGURATIONS Release RUNTIME DESTINATION bin/Release)
 
@@ -30,6 +36,6 @@ set(CPACK_PACKAGE_CONTACT example@example.com)
 
 include(CPack)
 
-#enable_testing()
+enable_testing()
 
-#add_test(test_version ${BIN_DIR}/test_version)
+add_test(test_version ${BIN_DIR}/test_version)

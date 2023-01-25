@@ -9,24 +9,22 @@ set(SOURCE
         src/test_version.cpp
         )
 
-find_package(Boost REQUIRED COMPONENTS unit_test_framework)
-
 add_executable(${PROJECT_NAME} ${SOURCE})
 set_target_properties( ${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${BIN_DIR} )
 
-set_target_properties(${PROJECT_NAME} PROPERTIES
-#
-        INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}
+target_include_directories(${PROJECT_NAME}
+        PRIVATE ${CMAKE_SOURCE_DIR}/lib/include
         )
 
-target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/lib/include)
-
 target_link_libraries(${PROJECT_NAME}
-        PRIVATE ${Boost_LIBRARIES}
+        #PRIVATE ${Boost_LIBRARIES}
         PRIVATE lib
+        PRIVATE gtest
+        PRIVATE gtest_main
         )
 
 if (MSVC)
+    set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
     target_compile_options(${PROJECT_NAME} PRIVATE
             /W4
             )

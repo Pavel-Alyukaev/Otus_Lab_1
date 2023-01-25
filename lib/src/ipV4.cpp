@@ -14,7 +14,7 @@ ipV4::ipV4(std::string_view ip):
     std::size_t pos = 0;
     for (std::string_view item: mainData) {
         int a = std::stoi(item.data(), &pos);
-        if (pos != item.length()) {
+        if (pos != item.length() || a > UINT8_MAX) {
             m_isValid = false;
             break;
         }
