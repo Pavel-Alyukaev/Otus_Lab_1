@@ -10,7 +10,7 @@ set(SOURCE
         )
 
 add_executable(${PROJECT_NAME} ${SOURCE})
-#set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BIN_DIR} )
+
 set_target_properties( ${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${BIN_DIR} )
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/lib/include)

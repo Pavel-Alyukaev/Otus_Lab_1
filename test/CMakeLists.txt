@@ -34,3 +34,8 @@ else ()
             )
 endif()
 
+add_custom_command(
+        TARGET ${PROJECT_NAME}  POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy
+        ${CMAKE_SOURCE_DIR}/test/src/ip_filter.tsv
+        ${CMAKE_SOURCE_DIR}/ip_filter.tsv)

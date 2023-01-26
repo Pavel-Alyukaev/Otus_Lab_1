@@ -24,7 +24,7 @@ if (MSVC)
     set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 endif()
 
-install(TARGETS SortIp CONFIGURATIONS Release RUNTIME DESTINATION bin/Release)
+install(TARGETS SortIp CONFIGURATIONS ${CMAKE_BUILD_TYPE} RUNTIME DESTINATION ${BIN_DIR})
 
 set(CPACK_GENERATOR DEB)
 
