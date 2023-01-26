@@ -38,4 +38,4 @@ include(CPack)
 
 enable_testing()
 
-add_test(test_version ${BIN_DIR}/test_version)
+add_test(test_version ${CMAKE_SOURCE_DIR}/test_version)
