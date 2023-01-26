@@ -18,7 +18,7 @@ add_subdirectory("Main")
 add_subdirectory("lib")
 add_subdirectory("test")
 
-install(TARGETS HelloWorld CONFIGURATIONS Release RUNTIME DESTINATION bin/Release)
+install(TARGETS HelloWorld CONFIGURATIONS ${CMAKE_BUILD_TYPE} RUNTIME DESTINATION ${BIN_DIR})
 
 set(CPACK_GENERATOR DEB)
 
