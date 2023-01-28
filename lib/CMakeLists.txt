@@ -18,11 +18,10 @@ set(SOURCE
 
         include/version.h
         include/lib.h
-        include/stringTools.h
 
         src/lib.cpp
-        src/stringTools.cpp
-        include/stringTools.h src/ipV4.cpp include/ipV4.h src/IpPool.cpp include/IpPool.h)
+        include/SimpleCustomAllocator.h
+        include/pretty.h)
 
 add_library(${PROJECT_NAME} STATIC ${SOURCE})
 

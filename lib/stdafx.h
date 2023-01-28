@@ -1,7 +1,6 @@
-#include "string"
-#include "vector"
-#include "string"
-#include "bitset"
+#include <vector>
+#include <string>
+#include <bitset>
 #include <iostream>
 #include <fstream>
 #include <algorithm>
