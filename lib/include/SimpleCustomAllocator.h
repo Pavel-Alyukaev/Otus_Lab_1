@@ -25,17 +25,16 @@ public:
     };
 
     T *allocate(size_t n) {
+        if (m_curElement + n > count + 1)
+            throw std::bad_alloc();
+
         if (m_buffPtr == nullptr) {
             std::cout << "Attempt to allocate memory to " << count << " elements" << std::endl;
-            auto p = std::malloc(count * sizeof(T));
-            if (!p)
-                throw std::bad_alloc();
-            m_buffPtr = reinterpret_cast<pointer>(p);
+            m_buffPtr = reinterpret_cast<T*>(std::malloc((count + 1) * sizeof(T)));
             if (m_buffPtr == nullptr)
                 throw std::bad_alloc();
             //return m_buffPtr;
-        } else if (m_curElement + n > count)
-            throw std::bad_alloc();
+        }
 
         pointer curPtr = m_buffPtr + m_curElement;
         m_curElement += n;

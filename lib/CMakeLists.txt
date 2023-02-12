@@ -8,7 +8,7 @@ project(lib VERSION ${MAJOR_NUMBER}.${MINOR_NUMBER}.${PATCH_VERSION} DESCRIPTION
 message(STATUS ${MAJOR_NUMBER})
 
 
-SET(CMAKE_CXX_STANDARD 17)
+SET(CMAKE_CXX_STANDARD 14)
 SET(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 configure_file(include/version.h.in ${CMAKE_SOURCE_DIR}/lib/include/version.h)
@@ -21,7 +21,7 @@ set(SOURCE
 
         src/lib.cpp
         include/SimpleCustomAllocator.h
-        include/pretty.h)
+        include/pretty.h src/DoubleLinkList.cpp include/DoubleLinkList.h)
 
 add_library(${PROJECT_NAME} STATIC ${SOURCE})
 
