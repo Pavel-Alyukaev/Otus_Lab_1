@@ -29,17 +29,17 @@ public:
     }
 
 // iterators
-    template <typename T>
+    template <typename U>
     struct ListIterator {
-        using pointer = const T*;
-        using reference = const T&;
+        using pointer = const U*;
+        using reference = const U&;
 
-        using self = ListIterator<T>;
+        using self = ListIterator<U>;
         Node<T>* node;
 
         ListIterator() : node(nullptr) {};
 
-        ListIterator(Node<T>* pNode) : node(pNode) {};
+        ListIterator(Node<U>* pNode) : node(pNode) {};
 
         reference operator*() const {
             return node->Data;
