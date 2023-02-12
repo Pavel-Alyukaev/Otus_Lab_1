@@ -12,7 +12,7 @@ struct Node
     Node* Next;
     Node* Prev;
     template<typename ...Args>
-    Node(Args &&...args) : Next(nullptr), Prev(nullptr), Data(std::forward<Args>(args)...){}
+    Node(Args &&...args) :  Data(std::forward<Args>(args)...),Next(nullptr), Prev(nullptr){}
 };
 
 template<typename T, typename Alloc = std::allocator<T>>
