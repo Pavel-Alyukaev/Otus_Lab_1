@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - lab2_ip
+      - lab3_allocator
       - feature/github_actions
 
 jobs:
