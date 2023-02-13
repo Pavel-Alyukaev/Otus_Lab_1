@@ -1,7 +1,3 @@
-//
-// Created by Apostol on 29.01.2023.
-//
-
 #ifndef ALLOCATOR_DOUBLELINKLIST_H
 #define ALLOCATOR_DOUBLELINKLIST_H
 
@@ -18,14 +14,18 @@ struct Node
 template<typename T, typename Alloc = std::allocator<T>>
 class DoubleLinkList {
 public:
-    DoubleLinkList():m_head(nullptr){}
-    DoubleLinkList(const DoubleLinkList &src):m_head(src.m_head){}
-    DoubleLinkList(DoubleLinkList &&src):m_head(src.m_head){
+    DoubleLinkList():m_head(nullptr),m_size(0){}
+    DoubleLinkList(const DoubleLinkList &src):m_head(src.m_head),m_size(0){}
+    DoubleLinkList(DoubleLinkList &&src):m_head(src.m_head),m_size(0){
         src.m_head= nullptr;
     }
     template <typename A>
-    DoubleLinkList(const DoubleLinkList<T,A> &src):m_head(src.m_head){
+    DoubleLinkList(const DoubleLinkList<T,A> &src):m_head(src.m_head),m_size(0){
         Copy(src);
+    }
+
+    ~DoubleLinkList(){
+        m_alloc.deallocate(m_head, m_size);
     }
 
 // iterators
@@ -80,7 +80,7 @@ public:
 
 
 
-    DoubleLinkList::ListIterator<T> begin() const noexcept {
+    const ListIterator<int> begin() const noexcept {
         return ListIterator<T>(m_head);
     }
 
@@ -109,6 +109,11 @@ public:
             new_node->Prev = m_end;
             m_end = new_node;
         }
+        ++m_size;
+    }
+
+    size_t Size(){
+        return m_size;
     }
 
 
@@ -127,6 +132,8 @@ private:
 private:
     Node<T>* m_head;
     Node<T>* m_end;
+
+    size_t m_size;
 
     using Allocator = typename  Alloc::template rebind< Node<T> >::other;
     Allocator m_alloc;
