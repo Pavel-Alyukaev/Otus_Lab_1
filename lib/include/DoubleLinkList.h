@@ -25,7 +25,13 @@ public:
     }
 
     ~DoubleLinkList(){
-        m_alloc.deallocate(m_head, m_size);
+        auto curEndNode = m_end;
+        while (curEndNode != nullptr)
+        {
+            curEndNode = m_end->Prev;
+            m_alloc.deallocate(m_end, 1);
+            m_end = curEndNode;
+        }
     }
 
 // iterators
