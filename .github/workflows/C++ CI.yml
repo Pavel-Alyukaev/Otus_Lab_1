@@ -23,6 +23,14 @@ jobs:
       - run: cmake --build . --target package
       - run: cmake --build . --target run_doxygen
 
+      - name: Deploy
+          uses: peaceiris/actions-gh-pages@v3
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            # Default Doxyfile build documentation to html directory.
+            # Change the directory if changes in Doxyfile
+            publish_dir: ${{github.workspace}}/docs/html
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
