@@ -1,63 +1,15 @@
 #include <iostream>
-#include <map>
-#include <vector>
-#include "SimpleCustomAllocator.h"
-#include "DoubleLinkList.h"
+#include "CustomIpPrint.h"
 
-unsigned int factorial(int i)
-{
-    return i == 0 ? 1 : i * factorial(i - 1);
-}
-
-template<typename T>
-void CustomPrint(std::string header, T& map)
-{
-    std::cout<<header <<std::endl;
-
-    for (const auto& [key, value] : map){
-        std::cout<<key<< " "<< value<<std::endl;
-    }
-}
-
-template<typename T>
-void CustomPrintList(std::string header, T& list)
-{
-    std::cout<<header <<std::endl;
-
-    for (const auto& value : list){
-        std::cout<<value<< " ";
-    }
-    std::cout<<std::endl;
-}
 
 int main(int, char *[]) {
-    std::map<int, int> m1;
-
-     std::map<
-            const int,
-            int,
-            std::less<int>,
-            SimpleCustomAllocator<
-                    std::pair<const int, int>, 10>> m2;
-
-    for (int i = 0; i < 10; ++i) {
-        m1.insert(std::pair<const int, int>(i,factorial(i)));
-        m2.insert(std::pair<const int, int>(i,factorial(i)));
-    }
-
-    CustomPrint("map", m1);
-    CustomPrint("map with allocator", m2);
-
-
-    DoubleLinkList <int> list_default;
-    DoubleLinkList<int, SimpleCustomAllocator<int, 10>> list_custom;
-    for (int i = 0; i < 10; ++i) {
-        list_default.push_back(i);
-        list_custom.push_back(i);
-    }
-
-    CustomPrintList("List without allocator",list_default);
-    CustomPrintList("List with allocator",list_custom);
-
+    Print( int8_t{-1} ); // 255
+    Print( int16_t{0} ); // 0.0
+    Print( int32_t{2130706433} ); // 127.0.0.1
+    Print( int64_t{8875824491850138409} );// 123.45.67.89.101.112.131.41
+    Print( std::string{"Hello, World!"} ); // Hello, World!
+    Print( std::vector<int>{100, 200, 300, 400} ); // 100.200.300.400
+    Print( std::list<short>{400, 300, 200, 100} ); // 400.300.200.100
+    Print( std::make_tuple(123, 456, 789, 0) ); // 123.456.789.0
     return 0;
 }

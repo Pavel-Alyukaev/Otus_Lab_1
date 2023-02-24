@@ -18,10 +18,11 @@ set(SOURCE
 
         include/version.h
         include/lib.h
+        include/pretty.h
+        include/CustomIpPrint.h
 
         src/lib.cpp
-        include/SimpleCustomAllocator.h
-        include/pretty.h src/DoubleLinkList.cpp include/DoubleLinkList.h)
+        )
 
 add_library(${PROJECT_NAME} STATIC ${SOURCE})
 

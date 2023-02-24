@@ -1,21 +1,23 @@
 #include "gtest/gtest.h"
-#include <fstream>
-#include "SimpleCustomAllocator.h"
-#include "DoubleLinkList.h"
+#include "CustomIpPrint.h"
 
-TEST(DoubleLinkList, push_back)
+TEST(CustomIpPrint, Print)
 {
-    DoubleLinkList <int> list_default;
-    DoubleLinkList<int, SimpleCustomAllocator<int, 10>> list_custom;
-    for (int i = 0; i < 10; ++i) {
-        list_default.push_back(i);
-        list_custom.push_back(i);
-    }
-
-    auto iter = list_default.begin();
-    auto iter1 = list_custom.begin();
-    for (;iter!= list_default.end() && iter1!= list_custom.end(); ++iter, ++iter1) {
-        ASSERT_EQ(iter.node->Data, iter1.node->Data);
-    }
-
+    std::string buf;
+    Print( int8_t{-1} ,buf); // 255
+    ASSERT_EQ(buf, "255");
+    Print( int16_t{0} , buf); // 0.0
+    ASSERT_EQ(buf, "0.0");
+    Print( int32_t{2130706433} , buf); // 127.0.0.1
+    ASSERT_EQ(buf, "127.0.0.1");
+    Print( int64_t{8875824491850138409} , buf);// 123.45.67.89.101.112.131.41
+    ASSERT_EQ(buf, "123.45.67.89.101.112.131.41");
+    Print( std::string{"Hello, World!"} , buf); // Hello, World!
+    ASSERT_EQ(buf, "Hello, World!");
+    Print( std::vector<int>{100, 200, 300, 400} , buf); // 100.200.300.400
+    ASSERT_EQ(buf, "100.200.300.400");
+    Print( std::list<short>{400, 300, 200, 100} , buf); // 400.300.200.100
+    ASSERT_EQ(buf, "400.300.200.100");
+    Print( std::make_tuple(123, 456, 789, 0) ,buf); // 123.456.789.0
+    ASSERT_EQ(buf, "123.456.789.0");
 }
