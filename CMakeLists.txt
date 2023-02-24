@@ -24,6 +24,17 @@ if (MSVC)
     set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 endif()
 
+find_package(Doxygen QUIET)
+if(DOXYGEN_FOUND)
+    add_custom_target(run_doxygen COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/doxygen.conf)
+else(DOXYGEN_FOUND)
+    message(STATUS "Doxygen not found - reference manual will not be created")
+endif(DOXYGEN_FOUND)
+set(DOXYGEN_INPUT "${PROJECT_SOURCE_DIR}/src")
+set(DOXYGEN_OUTPUT "${PROJECT_SOURCE_DIR}/docs")
+configure_file(${PROJECT_SOURCE_DIR}/src/doxygen.conf.in ${CMAKE_CURRENT_BINARY_DIR}/doxygen.conf)
+
+
 install(TARGETS CustomIP CONFIGURATIONS ${CMAKE_BUILD_TYPE} RUNTIME DESTINATION ${BIN_DIR})
 
 set(CPACK_GENERATOR DEB)
