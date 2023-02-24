@@ -16,17 +16,18 @@ jobs:
         with:
           submodules: true
       - run: sudo git submodule init && git submodule update
-      - uses: DenverCoder1/doxygen-github-pages-action@v1.2.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: gh-pages
-          folder: docs/html
-          config_file: Doxyfile
-   
+      - run: sudo apt install -y doxygen
       - run: cmake . -DPATCH_VERSION=${{ github.run_number }} -DCMAKE_BUILD_TYPE=Release
       - run: cmake --build .
       - run: cmake --build . --target test
       - run: cmake --build . --target package
+      - run: cmake --build . --target run_doxygen
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ${{github.workspace}}/docs/html
+          
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
