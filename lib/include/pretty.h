@@ -1,8 +1,0 @@
-#ifndef ALLOCATOR_PRETTY_H
-#define ALLOCATOR_PRETTY_H
-
-#ifdef _MSC_VER
-#define __PRETTY_FUNCTION__ __FUNCSIG__
-#endif
-
-#endif //ALLOCATOR_PRETTY_H
