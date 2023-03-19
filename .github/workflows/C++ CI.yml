@@ -1,0 +1,54 @@
+name: 'C++ CI'
+
+on:
+  push:
+    branches:
+      - main
+      - lab2_ip
+      - lab3_allocator
+      - lab4_template
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - run: sudo git submodule init && git submodule update
+      - run: sudo apt install -y doxygen
+      - run: cmake . -DPATCH_VERSION=${{ github.run_number }} -DCMAKE_BUILD_TYPE=Release
+      - run: cmake --build .
+      - run: cmake --build . --target test
+      - run: cmake --build . --target package
+      - run: cmake --build . --target run_doxygen
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            # Default Doxyfile build documentation to html directory.
+            # Change the directory if changes in Doxyfile
+            publish_dir: ${{github.workspace}}/docs/html
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.run_number }}
+          release_name: Release ${{ github.run_number }}
+          draft: false
+          prerelease: false
+          
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./CustomIP-0.0.${{ github.run_number }}-Linux.deb
+          asset_name: CustomIP-0.0.${{ github.run_number }}-Linux.deb
+          asset_content_type: application/vnd.debian.binary-package 
